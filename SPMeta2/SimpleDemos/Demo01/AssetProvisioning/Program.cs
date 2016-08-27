@@ -19,7 +19,7 @@ namespace AssetProvisioning
 
     public class Model
     {
-        public static SecurityGroupDefinition testSecurityGroup = new SecurityGroupDefinition()
+        public static SecurityGroupDefinition TestSecurityGroup = new SecurityGroupDefinition()
         {
             Name = "TestSecurityGroup",
             Owner = "TestSecurityGroup",
@@ -34,7 +34,7 @@ namespace AssetProvisioning
             var siteModel = SPMeta2Model.NewSiteModel(
                 site =>
                 {
-                    site.AddSecurityGroup(testSecurityGroup);
+                    site.AddSecurityGroup(TestSecurityGroup);
                 }
                 );
             return siteModel;
