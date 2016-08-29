@@ -101,7 +101,7 @@ namespace AssetProvisioning
 
                     Console.WriteLine(str2);
 
-                    System.IO.File.WriteAllText("sitemode.txt",str1);
+                    System.IO.File.WriteAllText("sitemodel.txt",str1);
 
                     provisioningService.DeployModel(SiteModelHost.FromClientContext(ctx), siteModel);
                 }
