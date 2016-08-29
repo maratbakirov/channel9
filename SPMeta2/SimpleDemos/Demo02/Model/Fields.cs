@@ -28,23 +28,6 @@ namespace Model
         };
 
 
-        //public static FieldDefinition Location = new TaxonomyFieldDefinition()
-        //{
-        //    Id = new Guid("{A19B01FF-36FF-4650-861D-B48FE4EE7608}"),
-        //    Title = "Location",
-        //    InternalName = "RIO_Location",
-        //    Description = "",
-        //    Group = Consts.GroupName,
-        //    Required = false,
-        //    UseDefaultSiteCollectionTermStore = true,
-        //    TermSetId = Taxonomy.Location.Id,
-        //    TermSetLCID = 1033,
-        //    TermSetName = "Location",
-        //    //TermLCID = 1033,
-        //    //TermId = Taxonomy.RootTerm.Id,
-        //    //TermName = "Root",
-        //};
-
 
         public static FieldDefinition ClientId = new FieldDefinition
         {

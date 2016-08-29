@@ -11,6 +11,7 @@ using SPMeta2.CSOM.ModelHosts;
 using SPMeta2.CSOM.Services;
 using SPMeta2.CSOM.Standard.ModelHandlers.Taxonomy;
 using SPMeta2.CSOM.Standard.Services;
+using SPMeta2.Extensions;
 
 namespace AssetProvisioning
 {
@@ -30,6 +31,8 @@ namespace AssetProvisioning
                     var provisioningService = new StandardCSOMProvisionService();
                     var siteModel = SiteModel.BuildTaxonomyModel();
 
+                    Console.WriteLine(siteModel.ToPrettyPrint());
+
                     //provisioningService.RegisterModelHandlers(typeof(TaxonomyGroupModelHandler).Assembly);
                     provisioningService.DeployModel(SiteModelHost.FromClientContext(ctx), siteModel);
                 }
@@ -39,6 +42,7 @@ namespace AssetProvisioning
 
                     var provisioningService = new CSOMProvisionService();
                     var siteModel = SiteModel.BuildSiteFeaturesModel();
+                    Console.WriteLine(siteModel.ToPrettyPrint());
 
                     provisioningService.RegisterModelHandlers(typeof(TaxonomyGroupModelHandler).Assembly);
                     provisioningService.DeployModel(SiteModelHost.FromClientContext(ctx), siteModel);
@@ -47,51 +51,51 @@ namespace AssetProvisioning
                 {
                     TraceHelper.TraceInformation("Building site fields");
 
-                    var provisioningService = new CSOMProvisionService();
+                    var provisioningService = new StandardCSOMProvisionService();
                     var siteModel = SiteModel.BuildFieldsModel();
+                    Console.WriteLine(siteModel.ToPrettyPrint());
 
-                    provisioningService.RegisterModelHandlers(typeof(TaxonomyGroupModelHandler).Assembly);
                     provisioningService.DeployModel(SiteModelHost.FromClientContext(ctx), siteModel);
                 }
                 using (ClientContext ctx = GetAuthenticatedContext())
                 {
                     TraceHelper.TraceInformation("Building site content types");
 
-                    var provisioningService = new CSOMProvisionService();
+                    var provisioningService = new StandardCSOMProvisionService();
                     var siteModel = SiteModel.BuildContentTypesModel();
+                    Console.WriteLine(siteModel.ToPrettyPrint());
 
-                    provisioningService.RegisterModelHandlers(typeof(TaxonomyGroupModelHandler).Assembly);
                     provisioningService.DeployModel(SiteModelHost.FromClientContext(ctx), siteModel);
                 }
                 using (ClientContext ctx = GetAuthenticatedContext())
                 {
                     TraceHelper.TraceInformation("Building web root model ");
 
-                    var provisioningService = new CSOMProvisionService();
-                    var siteModel = SiteModel.BuildWebRootModel();
+                    var provisioningService = new StandardCSOMProvisionService();
+                    var webModel = SiteModel.BuildWebRootModel();
+                    Console.WriteLine(webModel.ToPrettyPrint());
 
-                    provisioningService.RegisterModelHandlers(typeof(TaxonomyGroupModelHandler).Assembly);
-                    provisioningService.DeployModel(SiteModelHost.FromClientContext(ctx), siteModel);
+                    provisioningService.DeployModel(SiteModelHost.FromClientContext(ctx), webModel);
                 }
                 using (ClientContext ctx = GetAuthenticatedContext())
                 {
                     TraceHelper.TraceInformation("Building web root files and modules");
 
-                    var provisioningService = new CSOMProvisionService();
-                    var siteModel = Model.FIles.BuildFilesModel();
+                    var provisioningService = new StandardCSOMProvisionService();
+                    var webModel = Model.FIles.BuildFilesModel();
+                    Console.WriteLine(webModel.ToPrettyPrint());
 
-                    provisioningService.RegisterModelHandlers(typeof(TaxonomyGroupModelHandler).Assembly);
-                    provisioningService.DeployModel(WebModelHost.FromClientContext(ctx), siteModel);
+                    provisioningService.DeployModel(WebModelHost.FromClientContext(ctx), webModel);
                 }
                 using (ClientContext ctx = GetAuthenticatedContext())
                 {
                     TraceHelper.TraceInformation("Building pages");
 
-                    var provisioningService = new CSOMProvisionService();
-                    var siteModel = Model.Pages.BuildPagesModel();
+                    var provisioningService = new StandardCSOMProvisionService();
+                    var webModel = Model.Pages.BuildPagesModel();
+                    Console.WriteLine(webModel.ToPrettyPrint());
 
-                    provisioningService.RegisterModelHandlers(typeof(TaxonomyGroupModelHandler).Assembly);
-                    provisioningService.DeployModel(WebModelHost.FromClientContext(ctx), siteModel);
+                    provisioningService.DeployModel(WebModelHost.FromClientContext(ctx), webModel);
                 }
             }
             catch (Exception ex)
