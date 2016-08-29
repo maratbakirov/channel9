@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.SharePoint.Client;
 using SPMeta2.BuiltInDefinitions;
+using SPMeta2.Definitions;
 using SPMeta2.Enumerations;
 using SPMeta2.Models;
 using SPMeta2.Standard.Syntax;
 using SPMeta2.Syntax.Default;
+using SPMeta2.Syntax.Default.Modern;
 
 namespace Model.CSOM
 {
@@ -83,7 +86,14 @@ namespace Model.CSOM
                     site.AddField(Fields.ClinentLoginLink);
                     site.AddField(Fields.Dept);
                     site.AddField(Fields.Loan);
-                    site.AddField(Fields.Revenue);
+                    site.AddField(Fields.Revenue, f =>
+                    {
+                        f.OnProvisioned<Field,FieldDefinition>(
+                            context =>
+                            {
+                                Console.WriteLine("!!!!!!!! OnProvisioninig " + (context.ObjectDefinition as FieldDefinition).Title);
+                            });
+                    });
                 }
                 );
             return siteModel;
