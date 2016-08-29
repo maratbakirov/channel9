@@ -92,7 +92,7 @@ namespace Model.CSOM
                         f.OnProvisioned<FieldCurrency, CurrencyFieldDefinition>(
                             context =>
                             {
-                                Console.WriteLine("!!!!!!!! OnProvisioninig " + (context.ObjectDefinition as FieldDefinition).Title);
+                                Console.WriteLine("!!!!!!!! OnProvisioninig " + context.Object.Title);
                             });
                     });
                 }
