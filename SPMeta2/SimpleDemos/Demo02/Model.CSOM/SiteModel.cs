@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.SharePoint.Client;
 using SPMeta2.BuiltInDefinitions;
 using SPMeta2.Definitions;
+using SPMeta2.Definitions.Fields;
 using SPMeta2.Enumerations;
 using SPMeta2.Models;
 using SPMeta2.Standard.Syntax;
@@ -88,7 +89,7 @@ namespace Model.CSOM
                     site.AddField(Fields.Loan);
                     site.AddField(Fields.Revenue, f =>
                     {
-                        f.OnProvisioned<Field,FieldDefinition>(
+                        f.OnProvisioned<FieldCurrency, CurrencyFieldDefinition>(
                             context =>
                             {
                                 Console.WriteLine("!!!!!!!! OnProvisioninig " + (context.ObjectDefinition as FieldDefinition).Title);

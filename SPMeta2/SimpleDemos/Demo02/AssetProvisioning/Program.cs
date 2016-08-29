@@ -33,7 +33,7 @@ namespace AssetProvisioning
 
                     Console.WriteLine(siteModel.ToPrettyPrint());
 
-                    //provisioningService.RegisterModelHandlers(typeof(TaxonomyGroupModelHandler).Assembly);
+                    provisioningService.RegisterModelHandlers(typeof(TaxonomyGroupModelHandler).Assembly);
                     provisioningService.DeployModel(SiteModelHost.FromClientContext(ctx), siteModel);
                 }
                 using (ClientContext ctx = GetAuthenticatedContext())
@@ -44,7 +44,6 @@ namespace AssetProvisioning
                     var siteModel = SiteModel.BuildSiteFeaturesModel();
                     Console.WriteLine(siteModel.ToPrettyPrint());
 
-                    provisioningService.RegisterModelHandlers(typeof(TaxonomyGroupModelHandler).Assembly);
                     provisioningService.DeployModel(SiteModelHost.FromClientContext(ctx), siteModel);
                 }
                 using (ClientContext ctx = GetAuthenticatedContext())
